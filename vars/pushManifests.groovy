@@ -1,10 +1,13 @@
 def call() {
     echo 'Pushing updated Kubernetes manifests to Git repository...'
 
-    // دفع التغييرات إلى الـ Git repository
-    sh """
-        git add k8s-manifests/deployment.yaml k8s-manifests/service.yaml
-        git commit -m "Update Kubernetes manifests with new Docker image"
-        git push origin main
-    """
+    // الانتقال إلى مجلد الكود الذي يحتوي على الملفات
+    dir('jenkins-shared-library/k8s-manifests') {
+        // دفع التغييرات إلى الـ Git repository
+        sh """
+            git add deployment.yaml service.yaml
+            git commit -m "Update Kubernetes manifests with new Docker image"
+            git push origin main
+        """
+    }
 }
