@@ -3,8 +3,8 @@
 pipeline {
     agent { label 'docker-agent' }                                                                                   
     environment {
-        GITHUB_REPO_URL    = 'https://github.com/IbrahimAdell/App3.git'
-         GITHUB_REPO_BRANCH = 'main'
+        GITHUB_REPO_URL    = 'https://github.com/IbrahimAdell/FinalProjectCode.git'
+        GITHUB_REPO_BRANCH = 'main'
         DOCKER_IMAGE = "ranasalem2412/my-app"
         DOCKER_TAG = "latest"
     }
@@ -13,7 +13,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Cloning repository containing Dockerfile and source code...'
-                git 'https://github.com/IbrahimAdell/FinalProjectCode.git'
+                git url: "${GITHUB_REPO_URL}", branch: "${GITHUB_REPO_BRANCH}"
             }
         }
 
