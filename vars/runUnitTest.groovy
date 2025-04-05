@@ -1,6 +1,5 @@
 def call() {
-    echo 'Running unit tests...'
-    dir('FinalProjectCode') {
+    dir('web-app') {
         sh 'chmod +x gradlew'
         sh './gradlew test'
     }
