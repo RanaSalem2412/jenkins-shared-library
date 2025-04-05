@@ -1,9 +1,10 @@
 @Library('jenkins-shared-library') _
 
 pipeline {
-     agent { label 'docker-agent' }
-    
+                                                                                       
     environment {
+        GITHUB_REPO_URL    = 'https://github.com/IbrahimAdell/App3.git'
+         GITHUB_REPO_BRANCH = 'main'
         DOCKER_IMAGE = "ranasalem2412/my-app"
         DOCKER_TAG = "latest"
     }
