@@ -51,8 +51,12 @@ pipeline {
             steps {
                 echo 'Building Docker image...'
                 sh 'docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .'
+
             }
         }
+        echo 'Listing Docker images...'
+        sh 'docker images'
+
         stage('Docker Login') {
     steps {
         script {
