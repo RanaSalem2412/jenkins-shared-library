@@ -51,23 +51,26 @@ pipeline {
             steps {
                 echo 'Building Docker image...'
                 sh 'docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .'
-
             }
         }
-        echo 'Listing Docker images...'
-        sh 'docker images'
+
+        stage('List Docker Images') {
+            steps {
+                echo 'Listing Docker images...'
+                sh 'docker images'
+            }
+        }
 
         stage('Docker Login') {
-    steps {
-        script {
-            // تسجيل الدخول إلى Docker Hub باستخدام بيانات الاعتماد المحددة
-            docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-creds') {
-                echo 'Logged into Docker Hub'
+            steps {
+                script {
+                    // تسجيل الدخول إلى Docker Hub باستخدام بيانات الاعتماد المحددة
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-creds') {
+                        echo 'Logged into Docker Hub'
+                    }
+                }
             }
         }
-    }
-}
-
 
         stage('Push Docker Image') {
             steps {
@@ -98,4 +101,5 @@ pipeline {
         }
     }
 }
+
 
