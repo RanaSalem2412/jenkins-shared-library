@@ -1,5 +1,5 @@
 def call() {
-    echo 'Building JAR...'
-    sh './gradlew build -x test'
+    dir('web-app') {
+        sh './gradlew build'
+    }
 }
-
