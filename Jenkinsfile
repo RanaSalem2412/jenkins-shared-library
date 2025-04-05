@@ -1,7 +1,7 @@
 @Library('jenkins-shared-library@main') _
 
 pipeline {
-                                                                                       
+    agent { label 'docker-agent' }                                                                                   
     environment {
         GITHUB_REPO_URL    = 'https://github.com/IbrahimAdell/App3.git'
          GITHUB_REPO_BRANCH = 'main'
