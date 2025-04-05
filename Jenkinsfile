@@ -7,6 +7,8 @@ pipeline {
         GITHUB_REPO_BRANCH = 'main'
         DOCKER_IMAGE = "ranasalem2412/my-app"
         DOCKER_TAG = "latest"
+        LIBRARY_REPO = "https://github.com/RanaSalem2412/jenkins-shared-library.git"
+    }
     }
     
     stages {
@@ -28,6 +30,19 @@ pipeline {
             steps {
                 echo 'Building JAR file...'
                 buildJar()
+            }
+        }
+        stage('Checkout Shared Library to Get Dockerfile') {
+            steps {
+                dir('jenkins-shared-library') {
+                    git url: "${LIBRARY_REPO}", branch: 'main'
+                }
+            }
+        }
+        stage('Copy Dockerfile to App') {
+            steps {
+                sh 'cp jenkins-shared-library/Dockerfile ./'
+                sh 'ls -l ./Dockerfile'
             }
         }
 
