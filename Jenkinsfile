@@ -9,7 +9,6 @@ pipeline {
         DOCKER_TAG = "latest"
         LIBRARY_REPO = "https://github.com/RanaSalem2412/jenkins-shared-library.git"
     }
-    }
     
     stages {
         stage('Checkout') {
@@ -32,6 +31,7 @@ pipeline {
                 buildJar()
             }
         }
+
         stage('Checkout Shared Library to Get Dockerfile') {
             steps {
                 dir('jenkins-shared-library') {
@@ -39,6 +39,7 @@ pipeline {
                 }
             }
         }
+
         stage('Copy Dockerfile to App') {
             steps {
                 sh 'cp jenkins-shared-library/Dockerfile ./'
@@ -82,3 +83,4 @@ pipeline {
         }
     }
 }
+
